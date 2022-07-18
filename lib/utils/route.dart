@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../view/HomeScreen.dart';
-import '../view/LoginScreen.dart';
+import '../view/home_screen.dart';
+import '../view/login_screen.dart';
 
 
 class RouteGenerator

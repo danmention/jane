@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../pallete.dart';
+
 
 
 
@@ -73,38 +75,3 @@ class Button extends StatelessWidget {
 
 
 
-// class Button extends StatelessWidget {
-//   const Button({Key? key, required this.buttonText, this.buttonEnabled = true,this.onPressed, this.isOutline}) : super(key: key);
-//   final String buttonText;
-//   final bool buttonEnabled;
-//   final Function()? onPressed;
-//
-//   final bool? isOutline;
-//
-//
-//
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     Size screenSize = MediaQuery.of(context).size;
-//     return TextButton(
-//       child: Text(buttonText, style: TextStyle(
-//         color: Colors.white,
-//         fontWeight: FontWeight.bold,
-//       ),
-//
-//       ),
-//       style:
-//
-//       TextButton.styleFrom(
-//         backgroundColor:buttonEnabled ? Palette.mainColor :Color(0xff7c7c7c),
-//         padding: EdgeInsets.symmetric(vertical: 6.0, ),
-//         minimumSize: Size(600.0,44.0),
-//         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-//         onSurface: Colors.black45
-//         ,
-//       ),
-//       onPressed:onPressed,
-//     );
-//   }
-// }

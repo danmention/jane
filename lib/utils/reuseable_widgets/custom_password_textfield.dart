@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:xppossupport/utils/constants.dart';
+
+import '../constants.dart';
+
 
 class CustomPasswordTextField extends StatefulWidget {
   const CustomPasswordTextField({Key? key,this.onchange, this.hintText, this.controller,
