@@ -35,15 +35,10 @@ class _CustomPasswordTextFieldState extends State<CustomPasswordTextField> {
 
 
 
-  Widget toggle(){
-    return GestureDetector(
-        onTap: () {
-          setState(() {
-            _obscureText = !_obscureText;
-          });
-        },
-        child:  Image.asset('assets/icons/eye.png',width: 16.0,height: 16.0,)
-    );
+  void toggle(){
+    setState(() {
+      _obscureText = !_obscureText;
+    });
   }
 
   @override
@@ -72,7 +67,14 @@ class _CustomPasswordTextFieldState extends State<CustomPasswordTextField> {
           errorMaxLines: 3,
           hintText: widget.hintText,
           labelText: widget.labelText,
-          suffixIcon: toggle()
+          suffixIcon:  GestureDetector(
+            onTap: toggle,
+            child: Icon(
+              _obscureText
+                  ? Icons.visibility
+                  : Icons.visibility_off,
+            ),
+          ),
 
 
 

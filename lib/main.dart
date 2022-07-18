@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:jane/utils/route.dart';
 import 'package:jane/view/home_screen.dart';
+import 'package:jane/view/login_screen.dart';
 
 void main() {
   runApp(ProviderScope(child: const MyApp()));
@@ -13,12 +15,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Jane',
+      debugShowCheckedModeBanner: false,
+      onGenerateRoute: RouteGenerator.generateRoute,
       theme: ThemeData(
 
         primarySwatch: Colors.blue,
       ),
-      home: const HomeScreen(),
+      home: const LoginScreen(),
     );
   }
 }

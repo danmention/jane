@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:validators/validators.dart';
 
 class Utils{
 
@@ -35,5 +36,13 @@ class Utils{
          });
    }
 
-
+   static String? emailvalidation(String? text) {
+     if (text == null || text.isEmpty) {
+       return 'Email Required';
+     }
+     else if (!isEmail(text)) {
+       return 'Please enter a valid email';
+     }
+     return null;
+   }
 }

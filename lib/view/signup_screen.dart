@@ -1,25 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:jane/utils/constants.dart';
-import 'package:jane/view_model/authentication_viewmodel.dart';
-import 'package:validators/validators.dart';
+import 'package:jane/utils/reuseable_widgets/custom_button.dart';
 
-import '../utils/reuseable_widgets/custom_button.dart';
-import '../utils/reuseable_widgets/custom_password_textfield.dart';
 import '../utils/reuseable_widgets/custom_textfield.dart';
 import '../utils/utils.dart';
+import '../view_model/authentication_viewmodel.dart';
 
-class LoginScreen extends ConsumerStatefulWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+class SignupScreen extends ConsumerStatefulWidget {
+  const SignupScreen({Key? key}) : super(key: key);
 
   @override
-  _LoginScreenState createState() => _LoginScreenState();
+  _SignupScreenState createState() => _SignupScreenState();
 }
 
-class _LoginScreenState extends ConsumerState<LoginScreen> {
+class _SignupScreenState extends ConsumerState<SignupScreen> {
   var _formkey = GlobalKey<FormState>();
   final provider = ChangeNotifierProvider((ref) => AuthenticationViewModel());
-
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +32,17 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
 
                 children: [
-                  const SizedBox(height: 120,),
+
+
+                  const SizedBox(height: 124,),
+                  const Text('Full name'),
+                  const SizedBox(height: 5,),
+                  CustomTextField( onsaved: (String? value) {
+
+
+                  },),
+
+                  const SizedBox(height: 20,),
                   const Text('Email Address',),
                   const SizedBox(height: 5,),
                   CustomTextField(
@@ -48,25 +55,27 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                   const SizedBox(height: 24,),
                   const Text('Password'),
                   const SizedBox(height: 5,),
-                  CustomPasswordTextField(isPassword: true, onsaved: (String? value) {
+                  CustomTextField(isPassword: true, onsaved: (String? value) {
 
 
                   },),
+
+
                   const SizedBox(height: 10,),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                    Text('You dont have account?')
-                    ,GestureDetector(
-                        onTap:(){
-                          Navigator.pushNamed(context, 'signup');
-                        },
+                      Text('Already have an account?')
+                      ,GestureDetector(
+                          onTap:(){
+                          Navigator.pushNamed(context, 'login');
+                          },
 
-                          child: Text(' Signup', style: TextStyle(fontWeight: FontWeight.bold),))
-                  ],),
+                          child: Text(' Login', style: TextStyle(fontWeight: FontWeight.bold),))
+                    ],),
                   const SizedBox(height: 205,),
 
-                  Button(buttonText: 'Login', isLoading: ref
+                  Button(buttonText: 'Signup', isLoading: ref
                       .watch(provider)
                       .loading, onPressed: () async {
                     if (_formkey.currentState!.validate()) {
@@ -82,7 +91,4 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
       ),
     );
   }
-
-
-
 }

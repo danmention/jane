@@ -31,7 +31,6 @@ class CustomTextField extends StatelessWidget {
         onChanged: onchange,
         onSaved: onsaved,
 
-
         validator: validator,
         keyboardType: keyBoardType == null ? TextInputType.text : keyBoardType,
          obscureText: isPassword == null?false:true,
