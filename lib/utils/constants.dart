@@ -11,6 +11,7 @@ class Constants{
 
 
   static const  ksidePadding = 24.0;
+  static const  kTopPadding = 64.0;
 }
 
 

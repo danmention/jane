@@ -29,7 +29,7 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(
-              horizontal: Constants.ksidePadding),
+              horizontal: Constants.ksidePadding, vertical:  Constants.kTopPadding,),
           child: Container(
             child: Form(
               key: _formkey,
@@ -38,8 +38,8 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
 
                 children: [
 
-
-                  const SizedBox(height: 124,),
+                  const Text('Signup', style: TextStyle(fontWeight: FontWeight.bold, fontSize:30 ),),
+                  const SizedBox(height: 30,),
                   const Text('Full name'),
                   const SizedBox(height: 5,),
                   CustomTextField( onsaved: (String? value) {

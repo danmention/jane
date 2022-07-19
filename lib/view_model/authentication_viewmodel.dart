@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:jane/model/request/signup_request.dart';
@@ -9,6 +11,15 @@ class AuthenticationViewModel extends ChangeNotifier{
 
   bool _loading = false;
   bool get loading => _loading;
+  final auth = FirebaseAuth.instance;
+
+  User? _user;
+  Timer? timer;
+  String? email;
+
+
+
+
 
   setloading(bool value){
     _loading = value;
@@ -18,15 +29,24 @@ class AuthenticationViewModel extends ChangeNotifier{
 Future<void> signup(SignupRequest signupRequest , BuildContext context)async{
   setloading(true);
   try {
-    FirebaseAuth.instance.
+    auth.
     createUserWithEmailAndPassword(
         email: signupRequest.email!, password: signupRequest.password!).
-    then((value) => Navigator.pushNamed(context, 'home')).onError((error,
+    then((value) {
+      setloading(false);
+      Utils.showSnackBar("Verification link sent ", context);
+
+      Navigator.pushReplacementNamed(context, 'verify');
+
+    }
+
+
+    ).onError((error,
         stackTrace) {
       setloading(false);
       Utils.showSnackBar(error.toString(), context);
     });
-  } catch(e){
+  }  on FirebaseAuthException catch(e){
     Utils.showSnackBar(e.toString(), context);
   }
 
@@ -35,11 +55,30 @@ Future<void> signup(SignupRequest signupRequest , BuildContext context)async{
 }
 
 
+  Future<void> logout( BuildContext context)async{
+    setloading(true);
+    try {
+      auth.signOut().
+      then((value) => Navigator.pushNamed(context, 'login')).onError((error,
+          stackTrace) {
+        setloading(false);
+        Utils.showSnackBar(error.toString(), context);
+      });
+    } on FirebaseAuthException catch(e){
+      Utils.showSnackBar(e.toString(), context);
+    }
+
+
+    notifyListeners();
+  }
+
+
+
 
   Future<void> login(LoginRequest loginRequest , BuildContext context)async{
     setloading(true);
     try {
-      FirebaseAuth.instance.
+      auth.
       signInWithEmailAndPassword(
           email: loginRequest.email!, password: loginRequest.password!).
       then((value) => Navigator.pushNamed(context, 'home')).onError((error,
@@ -47,13 +86,14 @@ Future<void> signup(SignupRequest signupRequest , BuildContext context)async{
         setloading(false);
         Utils.showSnackBar(error.toString(), context);
       });
-    } catch(e){
+    } on FirebaseAuthException catch(e){
       Utils.showSnackBar(e.toString(), context);
     }
 
 
     notifyListeners();
   }
+
 
 
 
