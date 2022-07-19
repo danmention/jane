@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "416348793562",
+    "project_id": "jane-5bbbe",
+    "storage_bucket": "jane-5bbbe.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:416348793562:android:37df0e7b6abbf89560d3e3",
+        "android_client_info": {
+          "package_name": "com.example.jane"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "416348793562-2kttjho7o5m4gfc9r80iq3f3uuq3p7up.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCM7KWzf0tr-q9S-89BpfJ1msfIF5cbNag"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "416348793562-2kttjho7o5m4gfc9r80iq3f3uuq3p7up.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

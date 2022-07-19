@@ -1,8 +1,12 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:jane/utils/constants.dart';
+import 'package:jane/utils/pallete.dart';
 import 'package:jane/utils/reuseable_widgets/custom_button.dart';
 
+import '../model/request/login_request.dart';
+import '../model/request/signup_request.dart';
 import '../utils/reuseable_widgets/custom_textfield.dart';
 import '../utils/utils.dart';
 import '../view_model/authentication_viewmodel.dart';
@@ -17,6 +21,7 @@ class SignupScreen extends ConsumerStatefulWidget {
 class _SignupScreenState extends ConsumerState<SignupScreen> {
   var _formkey = GlobalKey<FormState>();
   final provider = ChangeNotifierProvider((ref) => AuthenticationViewModel());
+  SignupRequest signupRequest =  SignupRequest();
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +43,7 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
                   const Text('Full name'),
                   const SizedBox(height: 5,),
                   CustomTextField( onsaved: (String? value) {
-
+                    signupRequest.fullname =  value;
 
                   },),
 
@@ -48,7 +53,7 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
                   CustomTextField(
                     validator: Utils.emailvalidation,
                     onsaved: (String? value) {
-
+                      signupRequest.email =  value!.trim();
 
                     },
                     keyBoardType: TextInputType.emailAddress,),
@@ -57,7 +62,7 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
                   const SizedBox(height: 5,),
                   CustomTextField(isPassword: true, onsaved: (String? value) {
 
-
+                    signupRequest.password =  value!.trim();
                   },),
 
 
@@ -68,10 +73,10 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
                       Text('Already have an account?')
                       ,GestureDetector(
                           onTap:(){
-                          Navigator.pushNamed(context, 'login');
+                          Navigator.pushNamed(context, 'login', );
                           },
 
-                          child: Text(' Login', style: TextStyle(fontWeight: FontWeight.bold),))
+                          child: Text(' Login', style: TextStyle(fontWeight: FontWeight.bold, color: Palette.mainColor),))
                     ],),
                   const SizedBox(height: 205,),
 
@@ -80,6 +85,8 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
                       .loading, onPressed: () async {
                     if (_formkey.currentState!.validate()) {
                       _formkey.currentState!.save();
+                      ref.read(provider).signup(signupRequest, context);
+
                     }
                   },)
 

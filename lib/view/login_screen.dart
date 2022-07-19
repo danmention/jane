@@ -4,6 +4,7 @@ import 'package:jane/utils/constants.dart';
 import 'package:jane/view_model/authentication_viewmodel.dart';
 import 'package:validators/validators.dart';
 
+import '../utils/pallete.dart';
 import '../utils/reuseable_widgets/custom_button.dart';
 import '../utils/reuseable_widgets/custom_password_textfield.dart';
 import '../utils/reuseable_widgets/custom_textfield.dart';
@@ -56,13 +57,13 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                    Text('You dont have account?')
+                    Text('You don\'t have account?')
                     ,GestureDetector(
                         onTap:(){
                           Navigator.pushNamed(context, 'signup');
                         },
 
-                          child: Text(' Signup', style: TextStyle(fontWeight: FontWeight.bold),))
+                          child: Text(' Signup', style: TextStyle(fontWeight: FontWeight.bold, color: Palette.mainColor),))
                   ],),
                   const SizedBox(height: 205,),
 
