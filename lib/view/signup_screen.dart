@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:jane/utils/constants.dart';
 import 'package:jane/utils/pallete.dart';
 import 'package:jane/utils/reuseable_widgets/custom_button.dart';
+import 'package:jane/utils/reuseable_widgets/custom_password_textfield.dart';
 
 import '../model/request/login_request.dart';
 import '../model/request/signup_request.dart';
@@ -60,7 +61,7 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
                   const SizedBox(height: 24,),
                   const Text('Password'),
                   const SizedBox(height: 5,),
-                  CustomTextField(isPassword: true, onsaved: (String? value) {
+                  CustomPasswordTextField(isPassword: true, onsaved: (String? value) {
 
                     signupRequest.password =  value!.trim();
                   },),
@@ -78,7 +79,7 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
 
                           child: Text(' Login', style: TextStyle(fontWeight: FontWeight.bold, color: Palette.mainColor),))
                     ],),
-                  const SizedBox(height: 205,),
+                  const SizedBox(height: 150,),
 
                   Button(buttonText: 'Signup', isLoading: ref
                       .watch(provider)

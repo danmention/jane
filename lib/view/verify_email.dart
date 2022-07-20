@@ -37,7 +37,7 @@ class _VerifyScreenState extends State<VerifyScreen> {
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: Constants.ksidePadding),
         child: Container(child: Center(
-          child: Text("An email has been to ${_user!.email} kindly verify", textAlign: TextAlign.center,)
+          child: Text("An email has been to ${_user!.email} kindly verify, Check your spam if not in your inbox", textAlign: TextAlign.center,)
         ),),
       ),
     );

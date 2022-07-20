@@ -24,7 +24,7 @@ final kInputDecoration = InputDecoration(
     borderSide: BorderSide(color:  Palette.dividerColor, width: 1),
     borderRadius: BorderRadius.circular(5.0),
   ),
-  contentPadding: const EdgeInsets.symmetric( horizontal: 2.0),
+  contentPadding: const EdgeInsets.symmetric( horizontal: 2.0, vertical: 2),
   enabledBorder: OutlineInputBorder(
     borderSide: const BorderSide(color: Palette.dividerColor, width: 1),
     borderRadius: BorderRadius.circular(5.0),

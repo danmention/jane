@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:jane/model/request/signup_request.dart';
 
 import '../model/request/login_request.dart';
+import '../model/services/local_auth/local_auth_api.dart';
 import '../utils/utils.dart';
 
 class AuthenticationViewModel extends ChangeNotifier{
@@ -16,9 +17,6 @@ class AuthenticationViewModel extends ChangeNotifier{
   User? _user;
   Timer? timer;
   String? email;
-
-
-
 
 
   setloading(bool value){
@@ -96,6 +94,27 @@ Future<void> signup(SignupRequest signupRequest , BuildContext context)async{
 
 
 
+
+
+
+  Future<void> loginWithBiometric( BuildContext context)async{
+    setloading(true);
+    try {
+      final isAuthenticatedUser = await LocalAuthApi.authenticate();
+      setloading(false);
+      if(isAuthenticatedUser){
+        Navigator.pushNamed(context, 'home');
+      }
+
+        Utils.showSnackBar("Fingerprint authentication failed", context);
+
+    }  catch(e){
+      Utils.showSnackBar(e.toString(), context);
+    }
+
+
+    notifyListeners();
+  }
 
 
 
