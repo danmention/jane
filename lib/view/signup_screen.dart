@@ -39,7 +39,9 @@ class _SignupScreenState extends ConsumerState<SignupScreen> {
 
                 children: [
 
-                  const Text('Signup', style: TextStyle(fontWeight: FontWeight.bold, fontSize:30 ),),
+                  Align(alignment: Alignment.center,
+
+                      child: const Text('Signup', style: TextStyle(fontWeight: FontWeight.bold,color: Palette.mainColor, fontSize:30 ),)),
                   const SizedBox(height: 30,),
                   const Text('Full name'),
                   const SizedBox(height: 5,),
