@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:jane/utils/constants.dart';
 
 
-class CustomTextField extends StatelessWidget {
-  const CustomTextField({Key? key,this.onchange, this.hintText, this.controller,
+class CustomEmailTextField extends StatelessWidget {
+  const CustomEmailTextField({Key? key,this.onchange, this.hintText, this.controller,
     this.validator, this.enabled,
     this.keyBoardType, this.maxLength,this.isPassword, this.obscureText, this.labelText, this.sufficeIcon, this.isEmail, this.onsaved}) ;
   final String? hintText;
@@ -31,13 +31,8 @@ class CustomTextField extends StatelessWidget {
         onChanged: onchange,
         onSaved: onsaved,
 
-        validator:  (text) {
-          if (text == null || text.isEmpty) {
-            return 'Required';
-          }
-          return null;
-        },
-        keyboardType: keyBoardType == null ? TextInputType.text : keyBoardType,
+        validator: validator,
+        keyboardType: TextInputType.emailAddress,
          obscureText: isPassword == null?false:true,
         decoration:
 

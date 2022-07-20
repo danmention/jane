@@ -8,6 +8,7 @@ import 'package:validators/validators.dart';
 import '../model/request/login_request.dart';
 import '../utils/pallete.dart';
 import '../utils/reuseable_widgets/custom_button.dart';
+import '../utils/reuseable_widgets/custom_email_textfield.dart';
 import '../utils/reuseable_widgets/custom_password_textfield.dart';
 import '../utils/reuseable_widgets/custom_textfield.dart';
 import '../utils/utils.dart';
@@ -42,13 +43,13 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                   const SizedBox(height: 120,),
                   const Text('Email Address',),
                   const SizedBox(height: 5,),
-                  CustomTextField(
+                  CustomEmailTextField(
                     validator: Utils.emailvalidation,
                     onsaved: (String? value) {
 
                       loginRequest.email =  value!.trim();
                     },
-                    keyBoardType: TextInputType.emailAddress,),
+                   ),
                   const SizedBox(height: 24,),
                   const Text('Password'),
                   const SizedBox(height: 5,),

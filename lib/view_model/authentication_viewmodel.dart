@@ -14,10 +14,13 @@ class AuthenticationViewModel extends ChangeNotifier{
   bool get loading => _loading;
   final auth = FirebaseAuth.instance;
 
-  User? _user;
+
   Timer? timer;
   String? email;
 
+  String useremail(){
+ return  auth.currentUser!.email! ;
+  }
 
   setloading(bool value){
     _loading = value;
@@ -45,7 +48,7 @@ Future<void> signup(SignupRequest signupRequest , BuildContext context)async{
       Utils.showSnackBar(error.toString(), context);
     });
   }  on FirebaseAuthException catch(e){
-    Utils.showSnackBar(e.toString(), context);
+    Utils.showSnackBar(e.message.toString(), context);
   }
 
 
@@ -63,7 +66,8 @@ Future<void> signup(SignupRequest signupRequest , BuildContext context)async{
         Utils.showSnackBar(error.toString(), context);
       });
     } on FirebaseAuthException catch(e){
-      Utils.showSnackBar(e.toString(), context);
+      setloading(false);
+      Utils.showSnackBar(e.message.toString(), context);
     }
 
 
@@ -79,13 +83,15 @@ Future<void> signup(SignupRequest signupRequest , BuildContext context)async{
       auth.
       signInWithEmailAndPassword(
           email: loginRequest.email!, password: loginRequest.password!).
-      then((value) => Navigator.pushNamed(context, 'home')).onError((error,
+      then((value) => Navigator.pushNamed(context, 'home'))
+          .onError((error,
           stackTrace) {
         setloading(false);
         Utils.showSnackBar(error.toString(), context);
       });
     } on FirebaseAuthException catch(e){
-      Utils.showSnackBar(e.toString(), context);
+      setloading(false);
+      Utils.showSnackBar(e.message.toString(), context);
     }
 
 
@@ -102,11 +108,14 @@ Future<void> signup(SignupRequest signupRequest , BuildContext context)async{
     try {
       final isAuthenticatedUser = await LocalAuthApi.authenticate();
       setloading(false);
+      print(' finger print $isAuthenticatedUser');
       if(isAuthenticatedUser){
         Navigator.pushNamed(context, 'home');
+      }else{
+        Utils.showSnackBar("Fingerprint authentication failed", context);
       }
 
-        Utils.showSnackBar("Fingerprint authentication failed", context);
+
 
     }  catch(e){
       Utils.showSnackBar(e.toString(), context);

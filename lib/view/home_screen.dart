@@ -14,6 +14,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   final provider = ChangeNotifierProvider((ref) => AuthenticationViewModel());
   @override
   Widget build(BuildContext context) {
+    final providerValue  = ref.watch(provider);
     return  Scaffold(
       backgroundColor: Colors.white,
       body: Container(
@@ -23,11 +24,11 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         child: Column(
           children: [
             SizedBox(height: 100,),
-            Text('Welcome Home'),
+            Text('Welcome Home '),
 
             GestureDetector(
                 onTap: (){
-                  ref.read(provider).logout(context);
+                  providerValue.logout(context);
                 },
                 child: Padding(
                   padding: const EdgeInsets.all(18.0),

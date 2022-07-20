@@ -55,6 +55,8 @@ class _CustomPasswordTextFieldState extends State<CustomPasswordTextField> {
         validator: (text) {
           if (text == null || text.isEmpty) {
             return 'Required';
+          }else if(text.length <6){
+            return 'Password length should be greater than 6 digits';
           }
           return null;
         },

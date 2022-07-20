@@ -4,12 +4,6 @@ import 'package:jane/utils/pallete.dart';
 
 class Constants{
 
-  static const EMAILADDRESS = "EMAILADDRESS";
-  static const LASTNAME = "LASTNAME";
-  static const FIRSTNAME = "FIRSTNAME";
-  static const IS_LOGGED_IN = "IS_LOGGED_IN";
-
-
   static const  ksidePadding = 24.0;
   static const  kTopPadding = 64.0;
 }
